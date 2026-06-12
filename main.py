@@ -2,7 +2,7 @@ import os, random, threading, time, telebot
 from flask import Flask, request, jsonify, render_template_string
 
 # CONFIG
-BOT_TOKEN = '8876807144:AAGU3Frf6LJsIxZxORZM1kS46W9iDRn23dU'
+BOT_TOKEN = '8979529038:AAHJ4LcFTA7Epd6YSasSUL86cCaFdg82yVg'
 OWNER_PIN = "7777"
 bot = telebot.TeleBot(BOT_TOKEN)
 app = Flask(__name__)
