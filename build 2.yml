@@ -1,0 +1,53 @@
+name: Build Metaling Messenger (All Platforms)
+on: [push]
+jobs:
+  android-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install flet
+      - name: Build APK
+        run: flet build apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: metaling-android
+          path: build/apk/*.apk
+
+  windows-build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install flet
+      - name: Build EXE
+        run: flet build windows
+      - name: Upload EXE
+        uses: actions/upload-artifact@v3
+        with:
+          name: metaling-windows
+          path: build/windows/
+
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install flet
+      - name: Build iOS
+        run: flet build ios --no-sign
+      - name: Upload iOS
+        uses: actions/upload-artifact@v3
+        with:
+          name: metaling-ios
+          path: build/ios/
